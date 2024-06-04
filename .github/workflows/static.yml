@@ -43,7 +43,7 @@ jobs:
         run: bundle install
 
       - name: Build site
-        run: bundle exec jekyll build -d .
+        run: bundle exec jekyll build -d _site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the generated site content
-          path: '.'
+          path: './_site'
           
       - name: Deploy to GitHub Pages
         id: deployment
