@@ -2,10 +2,6 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  #push:
-  #  branches: ["main"]
-
   schedule:
     - cron: "0 * * * *"
 
@@ -34,20 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'  # Use the Ruby version you need
-
-      - name: Install Jekyll and Bundler
-        run: gem install jekyll bundler
-        
-      - name: Install dependencies
-        run: bundle install
-
-      - name: Build site
-        run: bundle exec jekyll build -d _site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -55,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the generated site content
+          # Upload the entire repository
           path: '.'
           
       - name: Deploy to GitHub Pages
