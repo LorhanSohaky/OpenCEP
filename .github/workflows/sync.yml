@@ -20,8 +20,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Sync branches
+      - name: Fetch and merge changes from main
         run: |
+          git fetch origin main:main  # Fetch changes from main
           git checkout opencep.com
-          git merge main --no-ff
-          git push origin opencep.com
+          git merge main --no-ff --no-edit  # Merge changes from main into opencep.com
+
+      - name: Push changes to opencep.com
+        run: git push origin opencep.com
