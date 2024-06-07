@@ -26,5 +26,5 @@ jobs:
       - name: Sync branches
         run: |
           git checkout -B opencep.com origin/opencep.com
-          git merge origin/main --no-ff --allow-unrelated-histories
+          git merge origin/main --no-ff --allow-unrelated-histories -X theirs
           git push origin opencep.com
