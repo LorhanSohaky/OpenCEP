@@ -12,9 +12,11 @@ jobs:
     steps:       
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Obtém apenas a última revisão
 
       - name: Fetch all branches
-        run: git fetch --all
+        run: git fetch origin +refs/heads/*:refs/remotes/origin/* --depth=1
 
       - name: Set up Git
         run: |
@@ -23,6 +25,6 @@ jobs:
 
       - name: Sync branches
         run: |
-          git checkout opencep.com
-          git merge main --no-ff
+          git checkout -B opencep.com origin/opencep.com
+          git merge origin/main --no-ff
           git push origin opencep.com
