@@ -1,30 +1,30 @@
-name: Sync Main to opencep.com
+#name: Sync Main to opencep.com
 
-on:
-  schedule:
-    - cron: '*/30 * * * *'
+#on:
+#  schedule:
+#    - cron: '*/30 * * * *'
 
-  workflow_dispatch:
+#  workflow_dispatch:
 
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:       
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1  # Obtém apenas a última revisão
+#jobs:
+#  sync:
+#    runs-on: ubuntu-latest
+#    steps:       
+#      - name: Checkout repository
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 1  # Obtém apenas a última revisão
 
-      - name: Fetch all branches
-        run: git fetch origin +refs/heads/*:refs/remotes/origin/* --depth=1
+#      - name: Fetch all branches
+#        run: git fetch origin +refs/heads/*:refs/remotes/origin/* --depth=1
 
-      - name: Set up Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+#      - name: Set up Git
+#        run: |
+#          git config user.name "github-actions[bot]"
+#          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Sync branches
-        run: |
-          git checkout -B opencep.com origin/opencep.com
-          git merge origin/main --no-ff --allow-unrelated-histories -X theirs
-          git push origin opencep.com
+#      - name: Sync branches
+#        run: |
+#          git checkout -B opencep.com origin/opencep.com
+#          git merge origin/main --no-ff --allow-unrelated-histories -X theirs
+#          git push origin opencep.com
